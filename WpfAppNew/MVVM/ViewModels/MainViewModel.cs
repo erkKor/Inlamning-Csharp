@@ -11,7 +11,7 @@ namespace WpfAppNew.MVVM.ViewModels
     public partial class MainViewModel : ObservableObject
     {
         [ObservableProperty]
-        private ObservableObject currentViewModel = new ContactsViewModel();
+        public static ObservableObject currentViewModel = new ContactsViewModel();
 
         [RelayCommand]
         private void GoToAddContact() => CurrentViewModel = new AddContactViewModel();

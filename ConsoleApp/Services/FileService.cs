@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Services
 {
-    internal class FileService
+    public class FileService
     {
         private string filePath = @$"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\users.json";
         private List<User> users = new List<User>();

@@ -14,6 +14,8 @@ namespace WpfAppNew.MVVM.ViewModels
 {
     public partial class ContactsViewModel : ObservableObject
     {
+        MainViewModel mainView;
+
         [ObservableProperty]
         private string title = "contatcs";
 
@@ -49,7 +51,10 @@ namespace WpfAppNew.MVVM.ViewModels
         public void UpdateContact()
         {
             ContactService.contact = SelectedContact;
-            CurrentViewmodel = new UpdateContactViewModel();    
+            //CurrentViewmodel = new UpdateContactViewModel();    
+            mainView = new MainViewModel();
+            mainView.CurrentViewModel = new UpdateContactViewModel();
+
         }
     }
 

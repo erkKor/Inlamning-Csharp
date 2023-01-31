@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Model
 {
-    internal interface IUser
+    public interface IUser
     {
         Guid Id { get; set; }
         string FirstName { get; set; }
@@ -16,7 +16,7 @@ namespace ConsoleApp.Model
         string Adress { get; set; }
     }
 
-    internal class User : IUser
+    public class User : IUser
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string FirstName { get; set; } = null!;
