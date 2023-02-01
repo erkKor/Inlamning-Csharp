@@ -52,9 +52,6 @@ namespace WpfAppNew.MVVM.ViewModels
         {
             ContactService.contact = SelectedContact;
             //CurrentViewmodel = new UpdateContactViewModel();    
-            mainView = new MainViewModel();
-            mainView.CurrentViewModel = new UpdateContactViewModel();
-
         }
     }
 
