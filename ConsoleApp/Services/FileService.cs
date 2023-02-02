@@ -41,8 +41,11 @@ namespace ConsoleApp.Services
 
         public void AddToList(User user)
         {
-            users.Add(user);
-            SaveToFile();
+            if(user != null)
+            {
+                users.Add(user);
+                SaveToFile();
+            }
         }
 
         public void Get(string handleChoice)
@@ -51,7 +54,7 @@ namespace ConsoleApp.Services
             if (finduser != null)
             {
                 Console.Clear();
-                Console.WriteLine(finduser!.ContactDetails);
+                Console.WriteLine($"Förnamn: {finduser.FirstName} \nEfternamn: {finduser.LastName}\nE-postadress: {finduser.Email}\nTelefonnummer: {finduser.PhoneNumber}\nAdress: {finduser.Adress}");
                 Console.WriteLine("Tryck på valfri tangent för att komma tillbaka till menyn: ");
             }
             else

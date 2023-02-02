@@ -12,12 +12,6 @@ namespace WpfAppNew.MVVM.ViewModels
 {
     public partial class AddContactViewModel : ObservableObject
     {
-        private readonly FileService fileService;
-        public AddContactViewModel()
-        {
-            fileService = new FileService();
-        }
-
         [ObservableProperty]
         private string pageTitle = "Lägg till kontakt";
 

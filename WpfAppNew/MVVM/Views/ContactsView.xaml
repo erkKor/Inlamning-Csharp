@@ -10,20 +10,20 @@
              d:DataContext="{d:DesignInstance Type=viewmodels:ContactsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="20">
+    <Grid Margin="5 0 0 10">
         <Grid.RowDefinitions>
             <RowDefinition  Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="24" Margin="0 0 0 10"/>
+        <TextBlock Grid.Row="0" Text="{Binding Title}" FontSize="22" FontWeight="Medium" Margin="0 0 0 20"/>
 
-        <Grid Grid.Row="1" Margin="10">
+        <Grid Grid.Row="1" Margin="5 0 0 10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ListView Background="Transparent" ItemsSource="{Binding Contacts}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedContact}" >
+            <ListView Name="lv_MyListView" Background="Transparent" ItemsSource="{Binding Contacts}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedContact}" SelectionChanged="ListView_SelectionChanged">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="{x:Type models:ContactModel}">
                         <Grid Margin="0 5 0 10">
@@ -36,34 +36,28 @@
                                 <TextBlock Text="{Binding DisplayName}"/>
                                 <TextBlock Text="{Binding Email}"/>
                             </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Button Name="btn_Edit" Click="btn_Edit_Click" Content="Edit" Margin="5 0 0 0" FontSize="10" Width="50"/>
-                                <Button x:Name="btn_Remove" Click="btn_Remove_Click" Content="Remove" Margin="5 0 0 0" FontSize="10" Width="50" Command="{Binding RemoveCommand}"/>
-                            </StackPanel>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackPanel Grid.Column="1">
-                <TextBlock Text="{Binding SelectedContact.DisplayName}" Margin="0 0 0 10"/>
+            <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                <TextBlock Text="{Binding SelectedContact.FirstName, StringFormat='Förnamn: {0}'}" Margin="0 0 0 5"/>
+                <TextBlock Text="{Binding SelectedContact.LastName, StringFormat='Efternamn: {0}'}" Margin="0 0 0 5"/>
+                <TextBlock Text="{Binding SelectedContact.Email, StringFormat='Epostadress: {0}'}" Margin="0 0 0 5"/>
+                <TextBlock Text="{Binding SelectedContact.PhoneNumber, StringFormat='Telefonnummer: {0}'}" Margin="0 0 0 5"/>
+                <TextBlock Text="{Binding SelectedContact.Adress, StringFormat='Adress: {0}'}" Margin="0 0 0 15"/>
                 <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding RemoveCommand}" Content="Ta bort" Width="55" Height="35" FontSize="14" Margin="0 0 10 0 "/>
-                    <Button Command="{Binding UpdateContactCommand}" Content="Edit" Width="55" Height="35" FontSize="14" />
+                    <Button x:Name="btn_RemoveBtn" Command="{Binding RemoveCommand}" Content="Ta bort" Width="75" Height="35" FontSize="14" Margin="0 0 10 0" Visibility="Hidden"/>
+                    <Button x:Name="btn_EditBtn" Command="{Binding UpdateContactCommand}" Content="Uppdatera" Width="75" Height="35" FontSize="14" Visibility="Hidden"/>
                 </StackPanel>
+                <TextBlock x:Name="tb_InfoText" Margin="0 0 0 0" Padding="5 0 0 0" Width="340" Height="136" xml:space="preserve" Visibility="Hidden">
+INFO!
+För att uppdatera kontaktuppgifter, välj en kontakt och tryck 
+på Uppdatera. Tryck sen på menyknappvalet längst ner för att 
+komma till uppdaterings formuläret.
+                </TextBlock>
             </StackPanel>
         </Grid>
-
-        <ContentControl Content="{Binding CurrentViewmodel}">
-            <ContentControl.Resources>
-                <DataTemplate DataType="{x:Type viewmodels:ContactsViewModel}">
-                    <views:ContactsView/>
-                </DataTemplate>
-                <DataTemplate DataType="{x:Type viewmodels:UpdateContactViewModel}">
-                    <views:UpdateContactView/>
-                </DataTemplate>
-            </ContentControl.Resources>
-        </ContentControl>
     </Grid>
 </UserControl>

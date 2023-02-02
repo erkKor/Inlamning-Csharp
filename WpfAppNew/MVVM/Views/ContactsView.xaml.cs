@@ -23,27 +23,20 @@ namespace WpfAppNew.MVVM.Views
     /// </summary>
     public partial class ContactsView : UserControl
     {
-        MainViewModel mainView;
-
         public ContactsView()
         {
             InitializeComponent();
         }
 
-        private void btn_Edit_Click(object sender, RoutedEventArgs e)
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var button = (Button)sender;
-            var contact = (ContactModel)button.DataContext;
-
-
-        }
-
-        private void btn_Remove_Click(object sender, RoutedEventArgs e)
-        {
-            var button = (Button)sender;
-            var contact = (ContactModel)button.DataContext;
-
-            ContactService.RemoveContact(contact);
+            ContactModel selectedContact = (ContactModel)lv_MyListView.SelectedItem;
+            if (selectedContact != null)
+            {
+                btn_RemoveBtn.Visibility = Visibility.Visible;
+                btn_EditBtn.Visibility = Visibility.Visible;  
+                tb_InfoText.Visibility = Visibility.Visible;
+            }  
         }
     }
 }

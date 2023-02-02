@@ -14,21 +14,14 @@ namespace WpfAppNew.MVVM.ViewModels
 {
     public partial class ContactsViewModel : ObservableObject
     {
-        MainViewModel mainView;
-
         [ObservableProperty]
-        private string title = "contatcs";
+        private string title = "Kontaktlista";
 
         [ObservableProperty]
         private ObservableCollection<ContactModel> contacts = ContactService.Contacts();
 
         [ObservableProperty]
         private ContactModel selectedContact = null!;
-
-        [ObservableProperty]
-        public ObservableObject currentViewmodel;
-
-
 
         [RelayCommand]
         public void Remove()
@@ -42,16 +35,14 @@ namespace WpfAppNew.MVVM.ViewModels
             
         }
 
-
-
-        [ObservableProperty]
-        private string firstNameText = "Test";
-
         [RelayCommand]
         public void UpdateContact()
         {
-            ContactService.contact = SelectedContact;
-            //CurrentViewmodel = new UpdateContactViewModel();    
+            try
+            {
+                ContactService.contact = SelectedContact;
+            }
+            catch { }
         }
     }
 

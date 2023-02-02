@@ -12,7 +12,6 @@ namespace WpfAppNew.Services
 {
     public static class ContactService
     {
-        //private static FileService fileService = new FileService($@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\wpfcontacts.json");
         private static ObservableCollection<ContactModel> contacts;
         public static ContactModel contact;
         private static FileService fileService = new FileService();
@@ -42,6 +41,7 @@ namespace WpfAppNew.Services
         {
             contacts.FirstOrDefault(x=> x.Id == model.Id);
             fileService.SaveToFile(JsonConvert.SerializeObject(contacts));
+            fileService.ReadFromFile();
         }
         
         public static ObservableCollection<ContactModel> Contacts()

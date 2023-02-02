@@ -24,6 +24,5 @@ namespace WpfAppNew.MVVM.Models
         public string PhoneNumber { get; set; } = string.Empty;
         public string Adress { get; set; } = string.Empty;
         public string DisplayName => $"{FirstName} {LastName}";
-        public string ContactDetails => $"Förnamn: {FirstName} \nEfternamn: {LastName}\nE-postadress: {Email}\nTelefonnummer: {PhoneNumber}\nAdress: {Adress}";
     }
 }

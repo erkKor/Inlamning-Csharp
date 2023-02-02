@@ -13,15 +13,7 @@ namespace WpfAppNew.MVVM.ViewModels
 {
     public partial class UpdateContactViewModel : ObservableObject
     {
-        private readonly FileService fileService;
         private ContactModel updatedInfo;
-
-        public UpdateContactViewModel()
-        {
-            fileService = new FileService();
-
-        }
-
 
         [ObservableProperty]
         private string pageTitle = "Uppdatera kontaktuppgifter";
@@ -44,11 +36,6 @@ namespace WpfAppNew.MVVM.ViewModels
         [RelayCommand]
         private void Update()
         {
-
-            //LastNameText = updatedContactInfo.LastName;
-            //EmailText = updatedContactInfo.Email;
-            //PhonenumberText = updatedContactInfo.PhoneNumber;
-            //AdressText = updatedContactInfo.Adress;
             updatedInfo = ContactService.contact;
             updatedInfo.FirstName = FirstNameText;
             updatedInfo.LastName= LastNameText;
@@ -56,7 +43,6 @@ namespace WpfAppNew.MVVM.ViewModels
             updatedInfo.PhoneNumber = PhonenumberText;
             updatedInfo.Adress = AdressText;
             ContactService.UpdateContact(updatedInfo);
-
 
         }
     }

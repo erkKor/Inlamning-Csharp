@@ -25,6 +25,5 @@ namespace ConsoleApp.Model
         public string PhoneNumber { get; set; } = null!;
         public string Adress { get; set; } = null!;
         public string DisplayName => $"{FirstName} {LastName} - Email: {Email}";
-        public string ContactDetails => $"Förnamn: {FirstName} \nEfternamn: {LastName}\nE-postadress: {Email}\nTelefonnummer: {PhoneNumber}\nAdress: {Adress}";
     }
 }
